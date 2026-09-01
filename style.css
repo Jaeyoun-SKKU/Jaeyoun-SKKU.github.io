@@ -113,47 +113,13 @@ footer {
 
 .member-group-title {
   margin-top: 32px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   font-size: 1.2rem;
   color: #0f2e4c;
 }
 
 .member-group-title:first-of-type {
   margin-top: 8px;
-}
-
-.member-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-}
-
-.member-card {
-  background: #fff;
-  border: 1px solid #e0e6ec;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-  text-align: center;
-}
-
-.member-photo {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 12px;
-}
-
-.member-name {
-  font-weight: 600;
-  color: #1c1c1c;
-}
-
-.member-date {
-  font-size: 0.85rem;
-  color: #6b7683;
-  margin-top: 4px;
 }
 
 .research-intro {
@@ -287,4 +253,74 @@ footer {
   justify-content: center;
   color: #8a99a8;
   font-size: 0.9rem;
+}
+
+.member-profile {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #e6ecf2;
+}
+
+.member-profile:last-of-type {
+  border-bottom: none;
+}
+
+.member-photo-wrap {
+  flex-shrink: 0;
+  width: 180px;
+  height: 220px;
+}
+
+.member-photo-wrap .member-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.member-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #e6ecf2;
+  border: 1px dashed #b7c4d1;
+  border-radius: 4px;
+}
+
+.member-info {
+  padding-top: 8px;
+}
+
+.member-name-kr {
+  font-size: 1.05rem;
+  color: #1c1c1c;
+  margin-bottom: 6px;
+}
+
+.member-role {
+  color: #3a3a3a;
+}
+
+.member-role-past {
+  font-style: italic;
+  color: #8a99a8;
+  margin-bottom: 2px;
+}
+
+.member-role-current {
+  font-weight: 700;
+  color: #1c1c1c;
+  margin-bottom: 10px;
+}
+
+.member-notes {
+  padding-left: 18px;
+  color: #3a3a3a;
+  font-size: 0.92rem;
+}
+
+.member-notes li {
+  margin-bottom: 4px;
 }
