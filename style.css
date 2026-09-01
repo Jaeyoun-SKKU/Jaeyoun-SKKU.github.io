@@ -146,3 +146,117 @@ footer {
   color: #6b7683;
   margin-top: 4px;
 }
+
+.research-intro {
+  margin-bottom: 28px;
+  max-width: 760px;
+}
+
+.research-topic {
+  font-size: 1.15rem;
+  color: #0f2e4c;
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+.research-topic:first-of-type {
+  margin-top: 0;
+}
+
+.research-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.research-list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 8px;
+  color: #3a3a3a;
+}
+
+.research-list li::before {
+  content: "-";
+  position: absolute;
+  left: 0;
+  color: #6fa8dc;
+}
+
+.pub-label {
+  font-weight: 600;
+  color: #0f2e4c;
+  margin-bottom: 16px;
+}
+
+.publication-list {
+  padding-left: 20px;
+}
+
+.publication-list li {
+  margin-bottom: 10px;
+  color: #3a3a3a;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  margin: 0 14px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 10;
+  margin-top: 8px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  color: #0f2e4c;
+  padding: 10px 16px;
+  margin: 0;
+  font-size: 0.9rem;
+  border-bottom: none;
+  text-align: left;
+}
+
+.dropdown-menu a:hover {
+  background: #f4f7fa;
+  border-bottom: none;
+}
+
+.hero {
+  text-align: center;
+  padding: 100px 0;
+}
+
+.hero h2 {
+  border-left: none;
+  padding-left: 0;
+  justify-content: center;
+}
+
+.hero p {
+  max-width: 640px;
+  margin: 12px auto 0;
+}
+
+.hero a {
+  color: #0f2e4c;
+  font-weight: 600;
+}
