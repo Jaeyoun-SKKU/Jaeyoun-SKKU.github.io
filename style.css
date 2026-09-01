@@ -260,3 +260,22 @@ footer {
   color: #0f2e4c;
   font-weight: 600;
 }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.gallery-placeholder {
+  aspect-ratio: 4 / 3;
+  background: #e6ecf2;
+  border: 1px dashed #b7c4d1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8a99a8;
+  font-size: 0.9rem;
+}
