@@ -5,6 +5,89 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gallery | Ryu Lab</title>
 <link rel="stylesheet" href="style.css">
+<style>
+.carousel {
+  position: relative;
+  max-width: 500px;
+  margin: 30px auto;
+}
+.carousel-track {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.carousel-slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: #e8eef4;
+  border: 1px dashed #b9c6d3;
+  border-radius: 8px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  color: #8a97a3;
+  font-size: 1em;
+}
+.carousel-slide.active {
+  display: flex;
+}
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #cdd6de;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #556270;
+  user-select: none;
+}
+.carousel-arrow:hover {
+  background: #ffffff;
+}
+.carousel-arrow.prev {
+  left: -50px;
+}
+.carousel-arrow.next {
+  right: -50px;
+}
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cdd6de;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+.carousel-dot.active {
+  background: #556270;
+}
+@media (max-width: 600px) {
+  .carousel-arrow.prev { left: 4px; }
+  .carousel-arrow.next { right: 4px; }
+}
+</style>
 </head>
 <body>
 
@@ -34,16 +117,22 @@
 
 <section class="section">
   <div class="container">
-    <h2>Lab Gallery</h2>
-    <p class="research-intro">Photos from lab life, events, and milestones. More coming soon.</p>
-    <div class="gallery-grid">
-      <div class="gallery-placeholder"><span>Photo coming soon</span></div>
-      <div class="gallery-placeholder"><span>Photo coming soon</span></div>
-      <div class="gallery-placeholder"><span>Photo coming soon</span></div>
-      <div class="gallery-placeholder"><span>Photo coming soon</span></div>
-      <div class="gallery-placeholder"><span>Photo coming soon</span></div>
-      <div class="gallery-placeholder"><span>Photo coming soon</span></div>
+    <h2>Gallery</h2>
+
+    <div class="carousel">
+      <div class="carousel-track">
+        <div class="carousel-slide active"><span>Photo coming soon</span></div>
+        <div class="carousel-slide"><span>Photo coming soon</span></div>
+        <div class="carousel-slide"><span>Photo coming soon</span></div>
+        <div class="carousel-slide"><span>Photo coming soon</span></div>
+        <div class="carousel-slide"><span>Photo coming soon</span></div>
+        <div class="carousel-slide"><span>Photo coming soon</span></div>
+      </div>
+      <button class="carousel-arrow prev" onclick="moveSlide(-1)" aria-label="Previous photo">&#10094;</button>
+      <button class="carousel-arrow next" onclick="moveSlide(1)" aria-label="Next photo">&#10095;</button>
+      <div class="carousel-dots"></div>
     </div>
+
   </div>
 </section>
 
@@ -52,6 +141,39 @@
     <p>&copy; 2026 Ryu Lab, Sungkyunkwan University. All rights reserved.</p>
   </div>
 </footer>
+
+<script>
+(function() {
+  var slides = document.querySelectorAll('.carousel-slide');
+  var dotsWrap = document.querySelector('.carousel-dots');
+  var current = 0;
+
+  slides.forEach(function(_, i) {
+    var dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+    dot.addEventListener('click', function() { goToSlide(i); });
+    dotsWrap.appendChild(dot);
+  });
+
+  var dots = document.querySelectorAll('.carousel-dot');
+
+  function update() {
+    slides.forEach(function(s, i) { s.classList.toggle('active', i === current); });
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+  }
+
+  window.moveSlide = function(dir) {
+    current = (current + dir + slides.length) % slides.length;
+    update();
+  };
+
+  window.goToSlide = function(i) {
+    current = i;
+    update();
+  };
+})();
+</script>
 
 </body>
 </html>
