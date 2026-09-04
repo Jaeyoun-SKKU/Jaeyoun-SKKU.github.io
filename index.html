@@ -221,28 +221,53 @@ body {
 <script>
 (function() {
   var header = document.getElementById('siteHeader');
-  var THRESHOLD = 100;
   var overHeader = false;
+  var hideTimer = null;
+  var HIDE_DELAY = 1500;
+  var TOP_ZONE = 100;
 
-  function update(clientY) {
-    if (overHeader || clientY <= THRESHOLD) {
-      header.classList.add('revealed');
-    } else {
-      header.classList.remove('revealed');
-    }
+  function show() {
+    header.classList.add('revealed');
   }
 
+  function hide() {
+    if (overHeader) return;
+    header.classList.remove('revealed');
+  }
+
+  function scheduleHide() {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hide, HIDE_DELAY);
+  }
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY <= TOP_ZONE) {
+      clearTimeout(hideTimer);
+      hide();
+      return;
+    }
+    show();
+    scheduleHide();
+  }, { passive: true });
+
   document.addEventListener('mousemove', function(e) {
-    update(e.clientY);
+    if (e.clientY <= TOP_ZONE) {
+      show();
+      clearTimeout(hideTimer);
+    }
   });
 
   header.addEventListener('mouseenter', function() {
     overHeader = true;
-    header.classList.add('revealed');
+    clearTimeout(hideTimer);
+    show();
   });
 
   header.addEventListener('mouseleave', function() {
     overHeader = false;
+    if (window.scrollY > TOP_ZONE) {
+      scheduleHide();
+    }
   });
 })();
 
