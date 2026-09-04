@@ -193,7 +193,8 @@ footer {
   border-radius: 6px;
   overflow: hidden;
   z-index: 10;
-  margin-top: 8px;
+  margin-top: 0;
+  padding-top: 8px;
 }
 
 .dropdown:hover .dropdown-menu {
