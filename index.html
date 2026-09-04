@@ -6,6 +6,21 @@
 <title>Ryu Lab | Next Generation ImmunoGenomics</title>
 <link rel="stylesheet" href="style.css">
 <style>
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transform: translateY(-100%);
+  transition: transform 0.5s ease;
+}
+header.revealed {
+  transform: translateY(0);
+}
+body {
+  padding-top: 0;
+}
 .hero {
   position: relative;
   min-height: 100vh;
@@ -77,25 +92,6 @@
   text-align: center;
   margin: 0 auto;
 }
-.hero-dots {
-  position: absolute;
-  bottom: 36px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-}
-.hero-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.35);
-}
-.hero-dot.active {
-  background: #4ee6b8;
-  width: 22px;
-  border-radius: 4px;
-}
 .quicklinks {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -132,7 +128,7 @@
 </head>
 <body>
 
-<header>
+<header id="siteHeader">
   <div class="container">
     <h1>Ryu Lab</h1>
     <p class="subtitle">Next Generation ImmunoGenomics</p>
@@ -164,10 +160,6 @@
     <h3 class="hero-kr-title">차세대 면역유전체 연구실</h3>
     <p class="hero-kr-desc">본 연구실은 면역세포가 종양을 인식하고 반응하는 기전을 단일세포 수준에서 규명하는 것을 중심으로, 이식 면역 및 미세플라스틱 노출 등 환경 면역학 연구로 그 범위를 확장하여 차세대 암 면역치료 전략 개발을 목표로 연구를 수행합니다.</p>
   </div>
-  <div class="hero-dots">
-    <span class="hero-dot active"></span>
-    <span class="hero-dot"></span>
-  </div>
 </section>
 
 <section class="section">
@@ -198,6 +190,19 @@
     <p>&copy; 2026 Ryu Lab, Sungkyunkwan University. All rights reserved.</p>
   </div>
 </footer>
+
+<script>
+(function() {
+  var header = document.getElementById('siteHeader');
+  var revealed = false;
+  document.addEventListener('mousemove', function() {
+    if (!revealed) {
+      revealed = true;
+      header.classList.add('revealed');
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
