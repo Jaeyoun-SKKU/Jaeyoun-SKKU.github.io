@@ -18,6 +18,9 @@ header {
 header.revealed {
   transform: translateY(0);
 }
+header.no-transition {
+  transition: none;
+}
 body {
   padding-top: 0;
 }
@@ -227,11 +230,18 @@ body {
   var TOP_ZONE = 100;
 
   function show() {
+    header.classList.remove('no-transition');
     header.classList.add('revealed');
   }
 
   function hide() {
     if (overHeader) return;
+    header.classList.remove('revealed');
+  }
+
+  function hideInstant() {
+    if (overHeader) return;
+    header.classList.add('no-transition');
     header.classList.remove('revealed');
   }
 
@@ -243,7 +253,7 @@ body {
   window.addEventListener('scroll', function() {
     if (window.scrollY <= TOP_ZONE) {
       clearTimeout(hideTimer);
-      hide();
+      hideInstant();
       return;
     }
     show();
