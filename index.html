@@ -227,6 +227,7 @@ body {
   var overHeader = false;
   var hideTimer = null;
   var HIDE_DELAY = 700;
+  var MOUSE_HIDE_DELAY = 300;
   var TOP_ZONE = 100;
 
   function show() {
@@ -245,9 +246,9 @@ body {
     header.classList.remove('revealed');
   }
 
-  function scheduleHide() {
+  function scheduleHide(delay) {
     clearTimeout(hideTimer);
-    hideTimer = setTimeout(hide, HIDE_DELAY);
+    hideTimer = setTimeout(hide, delay);
   }
 
   window.addEventListener('scroll', function() {
@@ -257,13 +258,16 @@ body {
       return;
     }
     show();
-    scheduleHide();
+    scheduleHide(HIDE_DELAY);
   }, { passive: true });
 
   document.addEventListener('mousemove', function(e) {
+    if (overHeader) return;
     if (e.clientY <= TOP_ZONE) {
       show();
       clearTimeout(hideTimer);
+    } else if (window.scrollY <= TOP_ZONE) {
+      scheduleHide(MOUSE_HIDE_DELAY);
     }
   });
 
@@ -276,7 +280,9 @@ body {
   header.addEventListener('mouseleave', function() {
     overHeader = false;
     if (window.scrollY > TOP_ZONE) {
-      scheduleHide();
+      scheduleHide(HIDE_DELAY);
+    } else {
+      scheduleHide(MOUSE_HIDE_DELAY);
     }
   });
 })();
