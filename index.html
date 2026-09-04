@@ -132,11 +132,17 @@ body {
   bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
-  width: 22px;
-  height: 22px;
-  pointer-events: none;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: scrollBounce 1.8s ease-in-out infinite;
   z-index: 2;
+  background: none;
+  border: none;
+  padding: 0;
 }
 .scroll-down-indicator span {
   display: block;
@@ -146,6 +152,7 @@ body {
   border-right: 3px solid #fff;
   transform: rotate(45deg);
   margin: 0 auto;
+  pointer-events: none;
 }
 @keyframes scrollBounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -187,9 +194,9 @@ body {
     <h3 class="hero-kr-title">차세대 면역유전체 연구실</h3>
     <p class="hero-kr-desc">본 연구실은 면역세포가 종양을 인식하고 반응하는 기전을 단일세포 수준에서 규명하는 것을 중심으로, 이식 면역 및 미세플라스틱 노출 등 환경 면역학 연구로 그 범위를 확장하여 차세대 암 면역치료 전략 개발을 목표로 연구를 수행합니다.</p>
   </div>
-  <div class="scroll-down-indicator" aria-hidden="true">
+  <button type="button" class="scroll-down-indicator" id="scrollDownBtn" aria-label="Scroll down">
     <span></span>
-  </div>
+  </button>
 </section>
 
 <section class="section" id="quicklinks">
@@ -290,6 +297,7 @@ body {
 (function() {
   var hero = document.getElementById('heroSection');
   var quicklinks = document.getElementById('quicklinks');
+  var scrollDownBtn = document.getElementById('scrollDownBtn');
   var isSnapping = false;
   var releaseTimer = null;
 
@@ -297,15 +305,23 @@ body {
     return window.scrollY < window.innerHeight * 0.6;
   }
 
+  function goToQuicklinks() {
+    isSnapping = true;
+    quicklinks.scrollIntoView({ behavior: 'smooth' });
+    clearTimeout(releaseTimer);
+    releaseTimer = setTimeout(function() {
+      isSnapping = false;
+    }, 900);
+  }
+
+  scrollDownBtn.addEventListener('click', function() {
+    goToQuicklinks();
+  });
+
   window.addEventListener('wheel', function(e) {
     if (isSnapping) return;
     if (atTop() && e.deltaY > 0) {
-      isSnapping = true;
-      quicklinks.scrollIntoView({ behavior: 'smooth' });
-      clearTimeout(releaseTimer);
-      releaseTimer = setTimeout(function() {
-        isSnapping = false;
-      }, 900);
+      goToQuicklinks();
     }
   }, { passive: true });
 
@@ -319,12 +335,7 @@ body {
     var touchEndY = e.changedTouches[0].clientY;
     var deltaY = touchStartY - touchEndY;
     if (atTop() && deltaY > 40) {
-      isSnapping = true;
-      quicklinks.scrollIntoView({ behavior: 'smooth' });
-      clearTimeout(releaseTimer);
-      releaseTimer = setTimeout(function() {
-        isSnapping = false;
-      }, 900);
+      goToQuicklinks();
     }
     touchStartY = null;
   }, { passive: true });
