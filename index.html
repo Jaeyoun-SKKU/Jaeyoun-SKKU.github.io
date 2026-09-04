@@ -195,12 +195,27 @@ body {
 (function() {
   var header = document.getElementById('siteHeader');
   var THRESHOLD = 100;
-  document.addEventListener('mousemove', function(e) {
-    if (e.clientY <= THRESHOLD) {
+  var overHeader = false;
+
+  function update(clientY) {
+    if (overHeader || clientY <= THRESHOLD) {
       header.classList.add('revealed');
     } else {
       header.classList.remove('revealed');
     }
+  }
+
+  document.addEventListener('mousemove', function(e) {
+    update(e.clientY);
+  });
+
+  header.addEventListener('mouseenter', function() {
+    overHeader = true;
+    header.classList.add('revealed');
+  });
+
+  header.addEventListener('mouseleave', function() {
+    overHeader = false;
   });
 })();
 </script>
