@@ -19,7 +19,7 @@
   text-align: center;
 }
 .hero-inner {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 6vw;
   width: 100%;
@@ -43,8 +43,13 @@
   line-height: 1.25;
   font-weight: 800;
   margin: 0 0 28px;
-  max-width: 900px;
+  max-width: none;
+  width: 100%;
   text-align: center;
+}
+.hero-title-line {
+  display: block;
+  white-space: nowrap;
 }
 .hero-title .accent {
   color: #4ee6b8;
@@ -119,6 +124,9 @@
   font-size: 0.92em;
   color: #5b6b7c;
 }
+@media (max-width: 640px) {
+  .hero-title-line { white-space: normal; }
+}
 </style>
 </head>
 <body>
@@ -149,7 +157,7 @@
 <section class="hero">
   <div class="hero-inner">
     <p class="hero-eyebrow">Sungkyunkwan University &middot; School of Medicine &middot; Department of Immunology</p>
-    <h2 class="hero-title">Laboratory of <span class="accent">Next Generation</span><br><span class="accent">Immuno</span>genomics</h2>
+    <h2 class="hero-title"><span class="hero-title-line">Laboratory of <span class="accent">Next Generation</span></span><span class="hero-title-line"><span class="accent">Immuno</span>genomics</span></h2>
     <p class="hero-desc">The Ryu Lab decodes how immune cells recognize and respond to tumors at single-cell resolution, extending this framework to transplant and environmental immunology &mdash; including immune responses to microplastic exposure &mdash; to advance next-generation cancer immunotherapy.</p>
 
     <h3 class="hero-kr-title">차세대 면역유전체 연구실</h3>
