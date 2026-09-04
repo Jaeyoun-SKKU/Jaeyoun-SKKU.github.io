@@ -13,7 +13,7 @@ header {
   right: 0;
   z-index: 100;
   transform: translateY(-100%);
-  transition: transform 0.5s ease;
+  transition: transform 0.35s ease;
 }
 header.revealed {
   transform: translateY(0);
@@ -194,11 +194,12 @@ body {
 <script>
 (function() {
   var header = document.getElementById('siteHeader');
-  var revealed = false;
-  document.addEventListener('mousemove', function() {
-    if (!revealed) {
-      revealed = true;
+  var THRESHOLD = 100;
+  document.addEventListener('mousemove', function(e) {
+    if (e.clientY <= THRESHOLD) {
       header.classList.add('revealed');
+    } else {
+      header.classList.remove('revealed');
     }
   });
 })();
