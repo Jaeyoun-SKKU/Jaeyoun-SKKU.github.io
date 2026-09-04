@@ -11,24 +11,39 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(100deg, rgba(6,12,26,0.92) 0%, rgba(6,12,26,0.55) 45%, rgba(6,12,26,0.25) 100%), url('generated-image.png');
+  justify-content: center;
+  background: linear-gradient(100deg, rgba(6,12,26,0.92) 0%, rgba(6,12,26,0.6) 50%, rgba(6,12,26,0.6) 100%), url('generated-image.png');
   background-size: cover;
   background-position: center;
   color: #fff;
+  text-align: center;
 }
 .hero-inner {
-  max-width: 1400px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 6vw;
   width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .hero-eyebrow {
   color: #7fd6c4;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-size: 0.85em;
+  font-size: 0.82em;
   font-weight: 600;
   margin: 0 0 18px;
+  text-align: center;
+}
+.hero-eyebrow a {
+  color: #7fd6c4;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(127, 214, 196, 0.4);
+}
+.hero-eyebrow a:hover {
+  border-bottom-color: #7fd6c4;
 }
 .hero-title {
   font-size: clamp(2.2em, 5vw, 3.6em);
@@ -36,6 +51,7 @@
   font-weight: 800;
   margin: 0 0 28px;
   max-width: 900px;
+  text-align: center;
 }
 .hero-title .accent {
   color: #4ee6b8;
@@ -44,20 +60,24 @@
   font-size: 1.05em;
   line-height: 1.7;
   color: #dbe4ee;
-  max-width: 640px;
-  margin: 0 0 8px;
+  max-width: 700px;
+  margin: 0 auto 8px;
+  text-align: center;
 }
 .hero-kr-title {
   margin: 36px 0 10px;
   font-size: 1.6em;
   font-weight: 800;
   color: #fff;
+  text-align: center;
 }
 .hero-kr-desc {
-  max-width: 660px;
+  max-width: 720px;
   line-height: 1.8;
   color: #c7d2dd;
   font-size: 0.98em;
+  text-align: center;
+  margin: 0 auto;
 }
 .hero-dots {
   position: absolute;
@@ -136,7 +156,7 @@
 
 <section class="hero">
   <div class="hero-inner">
-    <p class="hero-eyebrow">Sungkyunkwan University &middot; Department of Immunology</p>
+    <p class="hero-eyebrow"><a href="https://pure.skku.edu/en/organisations/sungkyunkwan-university/" target="_blank">Sungkyunkwan University</a> &middot; <a href="https://pure.skku.edu/en/organisations/school-of-medicine/" target="_blank">School of Medicine</a> &middot; Department of Immunology</p>
     <h2 class="hero-title">Laboratory of <span class="accent">Next Generation</span> <span class="accent">Immuno</span>genomics</h2>
     <p class="hero-desc">The Ryu Lab decodes how immune cells recognize and respond to tumors at single-cell resolution, extending this framework to transplant and environmental immunology &mdash; including immune responses to microplastic exposure &mdash; to advance next-generation cancer immunotherapy.</p>
 
