@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "members"
+    label: "팀원 소개 (Members)"
+    files:
+      - label: "팀원 목록"
+        name: "members_list"
+        file: "_data/members.json"
+        fields:
+          - {label: "팀원들", name: "members", widget: "list", fields: [
+              {label: "이름", name: "name", widget: "string"},
+              {label: "직함/범주", name: "role", widget: "string"},
+              {label: "사진", name: "photo", widget: "image"},
+              {label: "소개", name: "bio", widget: "text", required: false}
+            ]}
+
+  - name: "publications"
+    label: "논문 (Publications)"
+    files:
+      - label: "논문 목록"
+        name: "publications_list"
+        file: "_data/publications.json"
+        fields:
+          - {label: "논문들", name: "publications", widget: "list", fields: [
+              {label: "제목", name: "title", widget: "string"},
+              {label: "저자", name: "authors", widget: "string"},
+              {label: "플지", name: "journal", widget: "string"},
+              {label: "연도", name: "year", widget: "number"},
+              {label: "링크", name: "link", widget: "string", required: false}
+            ]}
