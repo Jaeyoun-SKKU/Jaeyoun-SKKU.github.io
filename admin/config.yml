@@ -13,12 +13,16 @@ collections:
         name: "members_list"
         file: "_data/members.json"
         fields:
-          - {label: "팀원들", name: "members", widget: "list", fields: [
-              {label: "이름", name: "name", widget: "string"},
-              {label: "직함/범주", name: "role", widget: "string"},
-              {label: "사진", name: "photo", widget: "image"},
-              {label: "소개", name: "bio", widget: "text", required: false}
-            ]}
+          - label: "팀원들"
+            name: "members"
+            widget: "list"
+            fields:
+              - {label: "그룹 (postdoc / students / interns)", name: "group", widget: "select", options: ["postdoc", "students", "interns"]}
+              - {label: "이름", name: "name_kr", widget: "string"}
+              - {label: "사진 파일명", name: "photo", widget: "image"}
+              - {label: "이전 역할 (선택)", name: "role_past", widget: "string", required: false}
+              - {label: "현재 역할", name: "role_current", widget: "string"}
+              - {label: "추가 학려/노트 (선택)", name: "notes", widget: "list", field: {label: "항목", name: "note", widget: "string"}, required: false}
 
   - name: "publications"
     label: "논문 (Publications)"
@@ -27,10 +31,12 @@ collections:
         name: "publications_list"
         file: "_data/publications.json"
         fields:
-          - {label: "논문들", name: "publications", widget: "list", fields: [
-              {label: "제목", name: "title", widget: "string"},
-              {label: "저자", name: "authors", widget: "string"},
-              {label: "플지", name: "journal", widget: "string"},
-              {label: "연도", name: "year", widget: "number"},
-              {label: "링크", name: "link", widget: "string", required: false}
-            ]}
+          - label: "논문들"
+            name: "publications"
+            widget: "list"
+            fields:
+              - {label: "제목", name: "title", widget: "string"}
+              - {label: "저자", name: "authors", widget: "string"}
+              - {label: "저널", name: "journal", widget: "string"}
+              - {label: "연도", name: "year", widget: "number"}
+              - {label: "링크 (선택)", name: "link", widget: "string", required: false}
