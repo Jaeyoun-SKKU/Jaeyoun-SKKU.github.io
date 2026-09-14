@@ -24,7 +24,7 @@ collections:
               - {label: "사진 파일명", name: "photo", widget: "image"}
               - {label: "이전 역할 (선택)", name: "role_past", widget: "string", required: false}
               - {label: "현재 역할", name: "role_current", widget: "string"}
-              - {label: "추가 학려/노트 (선택)", name: "notes", widget: "list", field: {label: "항목", name: "note", widget: "string"}, required: false}
+              - {label: "추가 학력/노트 (선택)", name: "notes", widget: "list", field: {label: "항목", name: "note", widget: "string"}, required: false}
 
   - name: "publications"
     label: "논문 (Publications)"
