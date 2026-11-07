@@ -184,6 +184,36 @@
   width: 24px;
   border-radius: 5px;
 }
+.lightbox-note {
+  display: none;
+  position: absolute;
+  top: 26px;
+  left: 32px;
+  max-width: min(360px, calc(50% - 170px));
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #e8eef5;
+  font-size: 0.88em;
+  line-height: 1.4;
+}
+.lightbox-note.show {
+  display: block;
+}
+/* 좁은 화면: 제목과 겹치지 않도록 하단으로 */
+@media (max-width: 900px) {
+  .lightbox-note {
+    top: auto;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    max-width: none;
+    text-align: center;
+    font-size: 0.8em;
+  }
+}
 .lightbox-close {
   position: absolute;
   top: 24px;
@@ -266,6 +296,7 @@
 </section>
 
 <div class="lightbox-overlay" id="lightbox">
+  <p class="lightbox-note" id="lightboxNote"></p>
   <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
   <div class="lightbox-box">
     <p class="lightbox-title" id="lightboxTitle"></p>
@@ -293,7 +324,9 @@
         'gallery/261030/05.jpg', 'gallery/261030/06.jpg', 'gallery/261030/07.gif', 'gallery/261030/08.jpg',
         'gallery/261030/09.jpg'
       ] },
-    { title: 'Hanbok Reza', date: '2026.10.28', photos: [
+    { title: 'Hanbok Reza', date: '2026.10.28',
+      note: 'Note: Photos 6 and 7 are staged for fun &mdash; no experiments were actually performed in hanbok.',
+      photos: [
         'gallery/261028/01.jpg', 'gallery/261028/02.jpg', 'gallery/261028/03.jpg', 'gallery/261028/04.jpg',
         'gallery/261028/05.jpg', 'gallery/261028/06.jpg', 'gallery/261028/07.jpg', 'gallery/261028/08.jpg'
       ] },
@@ -310,6 +343,7 @@
   var track = document.getElementById('carouselTrack');
   var dotsWrap = document.getElementById('carouselDots');
   var titleEl = document.getElementById('lightboxTitle');
+  var noteEl = document.getElementById('lightboxNote');
   var dateEl = document.getElementById('lightboxDate');
 
   document.querySelectorAll('.album-card').forEach(function(card) {
@@ -324,6 +358,9 @@
     current = 0;
     titleEl.textContent = activeAlbum.title;
     dateEl.textContent = activeAlbum.date;
+    // 앨범별 안내 문구 (좌측 상단)
+    noteEl.innerHTML = activeAlbum.note || '';
+    noteEl.classList.toggle('show', !!activeAlbum.note);
 
     track.innerHTML = '';
     dotsWrap.innerHTML = '';
