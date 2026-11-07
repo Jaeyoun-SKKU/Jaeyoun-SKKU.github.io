@@ -325,3 +325,29 @@ footer {
 .member-notes li {
   margin-bottom: 4px;
 }
+
+/* Students / Interns: 2열 그리드 */
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px 40px;
+  margin-bottom: 40px;
+}
+
+.member-grid .member-profile {
+  gap: 20px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.member-grid .member-photo-wrap {
+  width: 150px;
+  height: 183px;
+}
+
+@media (max-width: 720px) {
+  .member-grid {
+    grid-template-columns: 1fr;
+  }
+}
