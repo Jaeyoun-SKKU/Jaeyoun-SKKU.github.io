@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   color: #2b2b2b;
   line-height: 1.6;
 }
@@ -23,15 +23,48 @@ header {
   text-align: center;
 }
 
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+header .brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+header .brand-logo {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
 header h1 {
   font-size: 2.4rem;
   letter-spacing: 1px;
+  line-height: 1.2;
 }
 
 header .subtitle {
-  margin-top: 8px;
-  font-size: 1rem;
+  font-size: 1.35rem;
+  font-weight: 500;
   color: #a9c6e0;
+}
+
+@media (max-width: 720px) {
+  header .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+  header h1 {
+    font-size: 1.9rem;
+  }
+  header .subtitle {
+    flex-basis: 100%;
+    font-size: 1.05rem;
+  }
 }
 
 nav {
