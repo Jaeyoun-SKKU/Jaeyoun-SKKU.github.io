@@ -334,6 +334,12 @@ footer {
   margin-bottom: 40px;
 }
 
+/* Students와 Interns 사이 구분선 (Post-Doc 구분선과 동일) */
+.member-grid:not(:last-child) {
+  padding-bottom: 32px;
+  border-bottom: 1px solid #e6ecf2;
+}
+
 .member-grid .member-profile {
   gap: 20px;
   margin-bottom: 0;
