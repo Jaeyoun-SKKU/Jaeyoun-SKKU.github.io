@@ -55,17 +55,16 @@ header.compact nav a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 196px 0 96px;
+  padding: calc(var(--header-h, 186px) + 10px) 0 96px;
   box-sizing: border-box;
-  /* 카툰 전체가 한 눈에 보이도록 contain + 흰색 반투명 오버레이 (가운데 글씨 부분은 더 밝게) */
+  /* 카툰: 비율 고정, 상단 띠 아래 영역 세로를 꽉 채움 + 흰색 반투명 오버레이 (가운데 글씨 부분은 더 밝게) */
   background-color: #d5d1e8;
   background-image:
     radial-gradient(ellipse at center, rgba(255,255,255,0.86) 0%, rgba(255,255,255,0.68) 50%, rgba(255,255,255,0.5) 100%),
-    url('images/hero_tumor_immunology.jpg');
-  background-size: cover, contain;
-  background-position: center, center;
+    url('images/hero_tumor_immunology_v2.jpg');
+  background-size: cover, auto calc(100% - var(--header-h, 186px));
+  background-position: center, center bottom;
   background-repeat: no-repeat, no-repeat;
-  background-origin: border-box, content-box;
   color: #0f2e4c;
   text-align: center;
 }
@@ -285,8 +284,16 @@ header.compact nav a:hover {
   function update() {
     header.classList.toggle('compact', window.scrollY > THRESHOLD);
   }
+  // 펼친 상태의 헤더 높이를 CSS 변수로 (배경 이미지/본문 위치 계산용)
+  function measure() {
+    if (header.classList.contains('compact')) return;
+    document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+  }
   window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', measure);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
   update();
+  measure();
 })();
 
 (function() {
