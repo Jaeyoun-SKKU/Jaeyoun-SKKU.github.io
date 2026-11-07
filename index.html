@@ -13,8 +13,7 @@ header {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(15, 46, 76, 0.55);
-  backdrop-filter: blur(4px);
+  background: #0f2e4c;
   transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
 }
 header .brand {
@@ -56,15 +55,22 @@ header.compact nav a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 200px 0 96px;
+  padding: 196px 0 96px;
   box-sizing: border-box;
-  background: linear-gradient(rgba(10, 24, 44, 0.84), rgba(10, 24, 44, 0.84)), url('images/hero_tumor_immunology.jpg');
-  background-size: cover;
-  background-position: center;
-  color: #fff;
+  /* 카툰 전체가 한 눈에 보이도록 contain + 흰색 반투명 오버레이 (가운데 글씨 부분은 더 밝게) */
+  background-color: #d5d1e8;
+  background-image:
+    radial-gradient(ellipse at center, rgba(255,255,255,0.86) 0%, rgba(255,255,255,0.68) 50%, rgba(255,255,255,0.5) 100%),
+    url('images/hero_tumor_immunology.jpg');
+  background-size: cover, contain;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  background-origin: border-box, content-box;
+  color: #0f2e4c;
   text-align: center;
 }
 .hero-inner {
+  text-shadow: 0 0 10px rgba(255,255,255,0.95), 0 0 2px rgba(255,255,255,0.9);
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 6vw;
@@ -75,7 +81,7 @@ header.compact nav a:hover {
   align-items: center;
 }
 .hero-eyebrow {
-  color: #7fd6c4;
+  color: #0f7f68;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 0.82em;
@@ -98,12 +104,13 @@ header.compact nav a:hover {
   white-space: nowrap;
 }
 .hero-title .accent {
-  color: #4ee6b8;
+  color: #0e9f7e;
 }
 .hero-desc {
   font-size: 1.05em;
   line-height: 1.7;
-  color: #dbe4ee;
+  color: #24364a;
+  font-weight: 500;
   max-width: 700px;
   margin: 0 auto 8px;
   text-align: center;
@@ -112,13 +119,14 @@ header.compact nav a:hover {
   margin: 36px 0 10px;
   font-size: 1.6em;
   font-weight: 800;
-  color: #fff;
+  color: #0f2e4c;
   text-align: center;
 }
 .hero-kr-desc {
   max-width: 720px;
   line-height: 1.8;
-  color: #c7d2dd;
+  color: #33475b;
+  font-weight: 500;
   font-size: 0.98em;
   text-align: center;
   margin: 0 auto;
@@ -161,7 +169,7 @@ header.compact nav a:hover {
   bottom: 12px;
   margin: 0;
   font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(15, 46, 76, 0.6);
   z-index: 2;
 }
 .scroll-down-indicator {
@@ -185,8 +193,8 @@ header.compact nav a:hover {
   display: block;
   width: 12px;
   height: 12px;
-  border-bottom: 3px solid #fff;
-  border-right: 3px solid #fff;
+  border-bottom: 3px solid #0f2e4c;
+  border-right: 3px solid #0f2e4c;
   transform: rotate(45deg);
   margin: 0 auto;
   pointer-events: none;
