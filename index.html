@@ -13,17 +13,42 @@ header {
   left: 0;
   right: 0;
   z-index: 100;
-  transform: translateY(-100%);
-  transition: transform 0.35s ease;
+  background: rgba(15, 46, 76, 0.55);
+  backdrop-filter: blur(4px);
+  transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
 }
-header.revealed {
-  transform: translateY(0);
+header .brand {
+  max-height: 120px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
 }
-header.no-transition {
-  transition: none;
+header nav {
+  transition: margin-top 0.3s ease;
 }
-body {
-  padding-top: 0;
+header nav a {
+  transition: color 0.3s ease, border-color 0.2s;
+}
+/* 스크롤 시: 탭만 남기고 색 반전 */
+header.compact {
+  padding: 12px 0;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(15, 46, 76, 0.12);
+}
+header.compact .brand {
+  max-height: 0;
+  opacity: 0;
+}
+header.compact nav {
+  margin-top: 0;
+}
+header.compact nav a {
+  color: #0f2e4c;
+}
+header.compact nav a:hover {
+  border-bottom-color: #0f2e4c;
+}
+#quicklinks {
+  scroll-margin-top: 56px;
 }
 .hero {
   position: relative;
@@ -31,7 +56,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(100deg, rgba(6,12,26,0.92) 0%, rgba(6,12,26,0.6) 50%, rgba(6,12,26,0.6) 100%), url('generated-image.png');
+  padding: 200px 0 96px;
+  box-sizing: border-box;
+  background: linear-gradient(rgba(10, 24, 44, 0.84), rgba(10, 24, 44, 0.84)), url('images/hero_tumor_immunology.jpg');
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -128,6 +155,15 @@ body {
 @media (max-width: 640px) {
   .hero-title-line { white-space: normal; }
 }
+.hero-credit {
+  position: absolute;
+  right: 18px;
+  bottom: 12px;
+  margin: 0;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+  z-index: 2;
+}
 .scroll-down-indicator {
   position: absolute;
   bottom: 32px;
@@ -198,6 +234,7 @@ body {
     <h3 class="hero-kr-title">차세대 면역유전체 연구실</h3>
     <p class="hero-kr-desc">본 연구실은 면역세포가 종양을 인식하고 반응하는 기전을 단일세포 수준에서 규명하는 것을 중심으로, 이식 면역 및 미세플라스틱 노출 등 환경 면역학 연구로 그 범위를 확장하여 차세대 암 면역치료 전략 개발을 목표로 연구를 수행합니다.</p>
   </div>
+  <p class="hero-credit">Illustration &copy; CellCartoons</p>
   <button type="button" class="scroll-down-indicator" id="scrollDownBtn" aria-label="Scroll down">
     <span></span>
   </button>
@@ -234,68 +271,14 @@ body {
 
 <script>
 (function() {
+  // 맨 위: 전체 헤더 표시 / 스크롤 내리면: 탭만 색반전되어 상단 고정
   var header = document.getElementById('siteHeader');
-  var overHeader = false;
-  var hideTimer = null;
-  var HIDE_DELAY = 700;
-  var MOUSE_HIDE_DELAY = 300;
-  var TOP_ZONE = 100;
-
-  function show() {
-    header.classList.remove('no-transition');
-    header.classList.add('revealed');
+  var THRESHOLD = 40;
+  function update() {
+    header.classList.toggle('compact', window.scrollY > THRESHOLD);
   }
-
-  function hide() {
-    if (overHeader) return;
-    header.classList.remove('revealed');
-  }
-
-  function hideInstant() {
-    if (overHeader) return;
-    header.classList.add('no-transition');
-    header.classList.remove('revealed');
-  }
-
-  function scheduleHide(delay) {
-    clearTimeout(hideTimer);
-    hideTimer = setTimeout(hide, delay);
-  }
-
-  window.addEventListener('scroll', function() {
-    if (window.scrollY <= TOP_ZONE) {
-      clearTimeout(hideTimer);
-      hideInstant();
-      return;
-    }
-    show();
-    scheduleHide(HIDE_DELAY);
-  }, { passive: true });
-
-  document.addEventListener('mousemove', function(e) {
-    if (overHeader) return;
-    if (e.clientY <= TOP_ZONE) {
-      show();
-      clearTimeout(hideTimer);
-    } else if (window.scrollY <= TOP_ZONE) {
-      scheduleHide(MOUSE_HIDE_DELAY);
-    }
-  });
-
-  header.addEventListener('mouseenter', function() {
-    overHeader = true;
-    clearTimeout(hideTimer);
-    show();
-  });
-
-  header.addEventListener('mouseleave', function() {
-    overHeader = false;
-    if (window.scrollY > TOP_ZONE) {
-      scheduleHide(HIDE_DELAY);
-    } else {
-      scheduleHide(MOUSE_HIDE_DELAY);
-    }
-  });
+  window.addEventListener('scroll', update, { passive: true });
+  update();
 })();
 
 (function() {
