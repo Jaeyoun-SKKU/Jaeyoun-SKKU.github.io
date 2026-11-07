@@ -78,7 +78,7 @@
 }
 .lightbox-box {
   width: 100%;
-  max-width: 640px;
+  max-width: min(900px, calc((100vh - 180px) * 4 / 3));
 }
 .lightbox-title {
   color: #fff;
@@ -129,6 +129,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.carousel-slide.has-photo {
+  background: #11161c;
+}
+.carousel-slide.has-photo img {
+  object-fit: contain;
 }
 .carousel-arrow {
   position: absolute;
@@ -221,9 +227,9 @@
 
     <div class="album-grid">
       <button class="album-card" data-album="0">
-        <div class="album-thumb"><span>Photo coming soon</span></div>
-        <p class="album-title">Album Title</p>
-        <p class="album-date">2026.00.00</p>
+        <div class="album-thumb"><img src="gallery/261028/thumb.jpg" alt="Hanbok Reza"></div>
+        <p class="album-title">Hanbok Reza</p>
+        <p class="album-date">2026.10.28</p>
       </button>
       <button class="album-card" data-album="1">
         <div class="album-thumb"><span>Photo coming soon</span></div>
@@ -278,7 +284,10 @@
 <script>
 (function() {
   var albums = [
-    { title: 'Album Title', date: '2026.00.00', photos: ['Photo coming soon'] },
+    { title: 'Hanbok Reza', date: '2026.10.28', photos: [
+        'gallery/261028/01.jpg', 'gallery/261028/02.jpg', 'gallery/261028/03.jpg', 'gallery/261028/04.jpg',
+        'gallery/261028/05.jpg', 'gallery/261028/06.jpg', 'gallery/261028/07.jpg', 'gallery/261028/08.jpg'
+      ] },
     { title: 'Album Title', date: '2026.00.00', photos: ['Photo coming soon'] },
     { title: 'Album Title', date: '2026.00.00', photos: ['Photo coming soon'] },
     { title: 'Album Title', date: '2026.00.00', photos: ['Photo coming soon'] },
@@ -314,7 +323,15 @@
     activeAlbum.photos.forEach(function(photo, i) {
       var slide = document.createElement('div');
       slide.className = 'carousel-slide' + (i === 0 ? ' active' : '');
-      slide.innerHTML = '<span>' + photo + '</span>';
+      if (/\.(jpe?g|png|webp|gif)$/i.test(photo)) {
+        slide.className += ' has-photo';
+        var img = document.createElement('img');
+        img.src = photo;
+        img.alt = activeAlbum.title + ' ' + (i + 1);
+        slide.appendChild(img);
+      } else {
+        slide.innerHTML = '<span>' + photo + '</span>';
+      }
       track.appendChild(slide);
 
       var dot = document.createElement('button');
