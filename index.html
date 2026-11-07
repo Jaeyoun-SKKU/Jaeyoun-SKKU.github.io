@@ -57,19 +57,13 @@ header.compact nav a:hover {
   justify-content: center;
   padding: calc(var(--header-h, 186px) + 10px) 0 96px;
   box-sizing: border-box;
-  /* 카툰: 비율 고정, 상단 띠 아래 영역 세로를 꽉 채움 + 흰색 반투명 오버레이 (가운데 글씨 부분은 더 밝게) */
-  background-color: #d5d1e8;
-  background-image:
-    radial-gradient(ellipse at center, rgba(255,255,255,0.86) 0%, rgba(255,255,255,0.68) 50%, rgba(255,255,255,0.5) 100%),
-    url('images/hero_tumor_immunology_v2.jpg');
-  background-size: cover, auto calc(100% - var(--header-h, 186px));
-  background-position: center, center bottom;
-  background-repeat: no-repeat, no-repeat;
-  color: #0f2e4c;
+  background: linear-gradient(100deg, rgba(6,12,26,0.92) 0%, rgba(6,12,26,0.6) 50%, rgba(6,12,26,0.6) 100%), url('generated-image.png');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
   text-align: center;
 }
 .hero-inner {
-  text-shadow: 0 0 10px rgba(255,255,255,0.95), 0 0 2px rgba(255,255,255,0.9);
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 6vw;
@@ -80,7 +74,7 @@ header.compact nav a:hover {
   align-items: center;
 }
 .hero-eyebrow {
-  color: #0f7f68;
+  color: #7fd6c4;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 0.82em;
@@ -103,13 +97,12 @@ header.compact nav a:hover {
   white-space: nowrap;
 }
 .hero-title .accent {
-  color: #0e9f7e;
+  color: #4ee6b8;
 }
 .hero-desc {
   font-size: 1.05em;
   line-height: 1.7;
-  color: #24364a;
-  font-weight: 500;
+  color: #dbe4ee;
   max-width: 700px;
   margin: 0 auto 8px;
   text-align: center;
@@ -118,14 +111,13 @@ header.compact nav a:hover {
   margin: 36px 0 10px;
   font-size: 1.6em;
   font-weight: 800;
-  color: #0f2e4c;
+  color: #fff;
   text-align: center;
 }
 .hero-kr-desc {
   max-width: 720px;
   line-height: 1.8;
-  color: #33475b;
-  font-weight: 500;
+  color: #c7d2dd;
   font-size: 0.98em;
   text-align: center;
   margin: 0 auto;
@@ -162,15 +154,6 @@ header.compact nav a:hover {
 @media (max-width: 640px) {
   .hero-title-line { white-space: normal; }
 }
-.hero-credit {
-  position: absolute;
-  right: 18px;
-  bottom: 12px;
-  margin: 0;
-  font-size: 0.72rem;
-  color: rgba(15, 46, 76, 0.6);
-  z-index: 2;
-}
 .scroll-down-indicator {
   position: absolute;
   bottom: 32px;
@@ -192,8 +175,8 @@ header.compact nav a:hover {
   display: block;
   width: 12px;
   height: 12px;
-  border-bottom: 3px solid #0f2e4c;
-  border-right: 3px solid #0f2e4c;
+  border-bottom: 3px solid #fff;
+  border-right: 3px solid #fff;
   transform: rotate(45deg);
   margin: 0 auto;
   pointer-events: none;
@@ -241,7 +224,6 @@ header.compact nav a:hover {
     <h3 class="hero-kr-title">차세대 면역유전체 연구실</h3>
     <p class="hero-kr-desc">본 연구실은 면역세포가 종양을 인식하고 반응하는 기전을 단일세포 수준에서 규명하는 것을 중심으로, 이식 면역 및 미세플라스틱 노출 등 환경 면역학 연구로 그 범위를 확장하여 차세대 암 면역치료 전략 개발을 목표로 연구를 수행합니다.</p>
   </div>
-  <p class="hero-credit">Illustration &copy; CellCartoons</p>
   <button type="button" class="scroll-down-indicator" id="scrollDownBtn" aria-label="Scroll down">
     <span></span>
   </button>
@@ -284,7 +266,7 @@ header.compact nav a:hover {
   function update() {
     header.classList.toggle('compact', window.scrollY > THRESHOLD);
   }
-  // 펼친 상태의 헤더 높이를 CSS 변수로 (배경 이미지/본문 위치 계산용)
+  // 펼친 상태의 헤더 높이를 CSS 변수로 (표지 본문 위치 계산용)
   function measure() {
     if (header.classList.contains('compact')) return;
     document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
